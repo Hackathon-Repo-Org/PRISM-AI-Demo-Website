@@ -1,0 +1,554 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PRism-AI · Pre-Review Code Readiness Assistant</title>
+  <meta name="description" content="PRism-AI runs three AI specialists in parallel, runs real tests, and only says READY FOR HUMAN REVIEW when deterministic rules agree.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <!-- Top Announcement Bar -->
+  <aside class="announcement">
+    <div class="wrap ann-row">
+      <span class="badge-pill">IBM Hackathon 2026</span>
+      <span>Built for IBM Bob 2.0 &amp; Multi-Agent Workflows · 438 Tests Passing</span>
+      <a href="https://github.com/Hackathon-Repo-Org/PRism-AI-PROD-" target="_blank" rel="noopener" class="ann-link">Star on GitHub &rarr;</a>
+    </div>
+  </aside>
+
+  <!-- Site Header -->
+  <header class="site-header">
+    <div class="wrap header-row">
+      <a class="brand" href="#top" aria-label="PRism-AI Home">
+        <div class="brand-logo" aria-hidden="true">
+          <svg viewBox="0 0 40 40" width="36" height="36" fill="none">
+            <polygon points="20,4 36,32 4,32" stroke="url(#prism-grad)" stroke-width="3" fill="rgba(19, 134, 249, 0.08)"/>
+            <line x1="20" y1="16" x2="33" y2="30" stroke="#00d2ff" stroke-width="2.5" stroke-linecap="round"/>
+            <line x1="20" y1="16" x2="20" y2="32" stroke="#5fe0a6" stroke-width="2.5" stroke-linecap="round"/>
+            <line x1="20" y1="16" x2="7" y2="30" stroke="#8a3ffc" stroke-width="2.5" stroke-linecap="round"/>
+            <defs>
+              <linearGradient id="prism-grad" x1="4" y1="4" x2="36" y2="32" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#0062ff"/>
+                <stop offset="0.5" stop-color="#8a3ffc"/>
+                <stop offset="1" stop-color="#00d2ff"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-title">PRism<strong>AI</strong></span>
+          <span class="brand-subtitle">Pre-Review Assistant</span>
+        </div>
+      </a>
+      <nav aria-label="Main Navigation">
+        <a href="#demo">Live Demo</a>
+        <a href="#how">How It Works</a>
+        <a href="#features">Features</a>
+        <a href="#install">Install</a>
+        <a href="#use">CLI Guide</a>
+        <a class="nav-gh" href="https://github.com/Hackathon-Repo-Org/PRism-AI-PROD-" target="_blank" rel="noopener">
+          <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12 12 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg>
+          <span>GitHub</span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- Hero Section -->
+    <section class="hero" id="top">
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <div class="eyebrow">
+            <span class="eyebrow-dot"></span>
+            <span>Deterministic Grounding · Three Parallel Specialists</span>
+          </div>
+          <h1>Checks your pull request before human review.<br><span class="gradient-text">Then proves readiness.</span></h1>
+          <p class="lede">PRism-AI coordinates <strong>Code Review</strong>, <strong>Testing</strong>, and <strong>Documentation</strong> specialists in parallel. It executes your project's real test suite and only says <strong>READY FOR HUMAN REVIEW</strong> when deterministic rules agree.</p>
+          
+          <div class="install-pill-box">
+            <span class="pill-label">Run anywhere:</span>
+            <code>pip install -e . &amp;&amp; prismai</code>
+            <button type="button" class="btn-copy-code" data-copy="pip install -e . && prismai" aria-label="Copy install command">
+              <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+              <span>Copy</span>
+            </button>
+          </div>
+
+          <div class="actions">
+            <a class="btn btn-primary" href="#install">
+              <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Install &amp; Quick Start
+            </a>
+            <a class="btn btn-ghost" href="https://github.com/Hackathon-Repo-Org/PRism-AI-PROD-" target="_blank" rel="noopener">
+              <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+              Explore Repository
+            </a>
+          </div>
+
+          <div class="hero-stats">
+            <div class="stat-item">
+              <strong>438 / 438</strong>
+              <span>Tests Passing</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+              <strong>&lt; 30s</strong>
+              <span>Parallel Review</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+              <strong>0 AI Calls</strong>
+              <span>Re-check on Unchanged Files</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Interactive Hero Terminal / Inspection Visor -->
+        <div class="visor-wrap" id="demo">
+          <figure class="visor" aria-labelledby="visor-title">
+            <div class="visor-head">
+              <div class="visor-title-box">
+                <span class="terminal-dots"><span></span><span></span><span></span></span>
+                <p id="visor-title" class="visor-title">Interactive PR Inspection</p>
+              </div>
+              
+              <!-- State Switcher -->
+              <div class="seg" role="radiogroup" aria-label="PR Simulation Scenario">
+                <button type="button" role="radio" aria-checked="true" data-scenario="bad">The Buggy PR</button>
+                <button type="button" role="radio" aria-checked="false" data-scenario="ci">Traditional CI</button>
+                <button type="button" role="radio" aria-checked="false" data-scenario="fixed">PRism-AI Re-verified</button>
+              </div>
+            </div>
+
+            <!-- Terminal Screen -->
+            <div class="visor-screen">
+              <!-- Agents Status Row -->
+              <div class="agents-bar">
+                <div class="agent-chip" id="chip-code">
+                  <span class="agent-icon">&#x2699;</span>
+                  <span class="agent-name">code-review</span>
+                  <span class="agent-time">12s</span>
+                  <span class="agent-status-badge status-ok">&check;</span>
+                </div>
+                <div class="agent-chip" id="chip-test">
+                  <span class="agent-icon">&#x2713;</span>
+                  <span class="agent-name">testing</span>
+                  <span class="agent-time">34s</span>
+                  <span class="agent-status-badge status-ok">&check;</span>
+                </div>
+                <div class="agent-chip" id="chip-docs">
+                  <span class="agent-icon">&#x1F4D6;</span>
+                  <span class="agent-name">documentation</span>
+                  <span class="agent-time">25s</span>
+                  <span class="agent-status-badge status-ok">&check;</span>
+                </div>
+              </div>
+
+              <!-- Terminal Content Box -->
+              <div class="terminal-body" id="terminal-content">
+                <!-- Dynamically populated by JS -->
+              </div>
+            </div>
+
+            <figcaption class="visor-foot">
+              <p class="explain" id="visor-explanation" aria-live="polite">
+                Running 3 specialists across code, pytest suite, and OpenAPI surface...
+              </p>
+              <div class="verdict-row">
+                <div class="verdict-tag" id="visor-verdict">
+                  <span class="v-badge status-bad">ATTENTION REQUIRED</span>
+                </div>
+                <button type="button" class="btn-replay" id="btn-replay">
+                  <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 12a9 9 0 1 0 3-6.7L3 8m0-5v5h5"/></svg>
+                  <span>Replay Run</span>
+                </button>
+              </div>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why CI Is Not Enough -->
+    <section class="problem-strip">
+      <div class="wrap problem-grid">
+        <div class="problem-card problem-card-alert">
+          <div class="problem-icon">&times;</div>
+          <h3>Traditional CI Only Checks Yesterday's Assumptions</h3>
+          <p>If you introduce a new feature with an unhandled <code>None</code> crash or leave API documentation stale, existing unit tests still pass 100%. Reviewers waste hours on mechanical checks that slips right through CI.</p>
+        </div>
+        <div class="problem-card problem-card-solution">
+          <div class="problem-icon">&check;</div>
+          <h3>PRism-AI Checks the Full Quality Spectrum Before Review</h3>
+          <p>It pairs real deterministic test execution with three AI specialists to catch <strong>implementation bugs</strong>, <strong>untested behavior gaps</strong>, and <strong>documentation rot</strong> in 30 seconds.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how" id="how">
+      <div class="wrap">
+        <div class="section-head text-center">
+          <h2>Three Specialists. One Deterministic Gate.</h2>
+          <p class="subhead">Ordinary code handles Git, test execution, schema validation, and policy. AI models provide deep reasoning over structured evidence.</p>
+        </div>
+
+        <div class="pipeline-grid">
+          <!-- Stage 1 -->
+          <div class="stage-card">
+            <div class="stage-step">Stage 1</div>
+            <h3>Context Analyzer</h3>
+            <p>Creates an immutable Git snapshot, extracts AST import graphs, maps callers and callees, and scrubs sensitive credentials.</p>
+            <ul class="stage-list">
+              <li>&check; Resolves Git diff &amp; hunks</li>
+              <li>&check; AST caller/callee graphing</li>
+              <li>&check; Excludes secrets &amp; binaries</li>
+            </ul>
+          </div>
+
+          <!-- Stage 2 -->
+          <div class="stage-card stage-active">
+            <div class="stage-step">Stage 2</div>
+            <h3>3 Parallel Specialists</h3>
+            <p>Three independent agents inspect the exact same immutable snapshot simultaneously across three distinct quality domains.</p>
+            <div class="mini-agents">
+              <div class="mini-chip"><strong>Code Review:</strong> Nulls, logic, validation</div>
+              <div class="mini-chip"><strong>Testing:</strong> Pytest runner &amp; test gaps</div>
+              <div class="mini-chip"><strong>Docs:</strong> OpenAPI vs api.md sync</div>
+            </div>
+          </div>
+
+          <!-- Stage 3 -->
+          <div class="stage-card">
+            <div class="stage-step">Stage 3</div>
+            <h3>Result Aggregator</h3>
+            <p>Deterministic Python validates JSON schemas against <code>schemas/*.json</code>. The AI model <em>never</em> decides whether code is ready.</p>
+            <ul class="stage-list">
+              <li>&check; Strict schema validation</li>
+              <li>&check; 1 repair round on bad JSON</li>
+              <li>&check; Deduplication with provenance</li>
+            </ul>
+          </div>
+
+          <!-- Stage 4 -->
+          <div class="stage-card">
+            <div class="stage-step">Stage 4</div>
+            <h3>Delta Engine</h3>
+            <p>When you fix bugs and re-run with <code>--previous last</code>, it diffs findings to report exactly what is Resolved, Persistent, or New.</p>
+            <ul class="stage-list">
+              <li>&check; Two-pass stateful comparison</li>
+              <li>&check; Prevents regression blindspots</li>
+              <li>&check; Clear audit-ready delta table</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Grid -->
+    <section class="features" id="features">
+      <div class="wrap">
+        <div class="section-head text-center">
+          <h2>Engineered for Real-World Codebases</h2>
+          <p class="subhead">Built with production safety, multi-provider flexibility, and developer velocity at its core.</p>
+        </div>
+
+        <div class="features-grid">
+          <div class="feat-box">
+            <div class="feat-icon">&#x1F4AC;</div>
+            <h3>Talk to It: <code>prismai chat</code></h3>
+            <p>Ask plain-English questions in your terminal: <em>"Which parts are riskiest?"</em>, <em>"Explain the bug in shipping.py"</em>, or type <code>/check</code> for a formal review.</p>
+          </div>
+
+          <div class="feat-box">
+            <div class="feat-icon">&#x1F9EA;</div>
+            <h3>Deterministic Pytest Execution</h3>
+            <p>We don't guess whether tests pass. The testing agent runs real <code>pytest</code>, captures exit codes and JUnit XML logs, and surfaces real stack traces.</p>
+          </div>
+
+          <div class="feat-box">
+            <div class="feat-icon">&#x26A1;</div>
+            <h3>Zero-Cost AST Memory</h3>
+            <p>Scales to 100+ files. Unchanged modules are remembered in an AST fingerprint cache, allowing instant re-checks in ~1 second with <strong>0 external AI calls</strong>.</p>
+          </div>
+
+          <div class="feat-box">
+            <div class="feat-icon">&#x1F4C2;</div>
+            <h3>Works Anywhere (Git or No Git)</h3>
+            <p>Run against Git branches, raw folders (<code>prismai check --scan .</code>), before/after directory snapshots, or standalone <code>.patch</code> diff files.</p>
+          </div>
+
+          <div class="feat-box">
+            <div class="feat-icon">&#x1F504;</div>
+            <h3>Continuous Watch Mode</h3>
+            <p>Keep <code>prismai watch .</code> running in a terminal. Every time you press <code>Ctrl+S</code>, it quietly checks affected files and updates <code>PRISM-REPORT.md</code>.</p>
+          </div>
+
+          <div class="feat-box">
+            <div class="feat-icon">&#x1FA7A;</div>
+            <h3>Self-Diagnosing: <code>prismai doctor</code></h3>
+            <p>One command checks your Python environment, dependencies, terminal encoding, and tests live connectivity to your AI provider.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Installation & Setup -->
+    <section class="install" id="install">
+      <div class="wrap">
+        <div class="section-head text-center">
+          <h2>Install Once. Call from Anywhere.</h2>
+          <p class="subhead">Just like <code>git</code> or <code>docker</code>, PRism-AI installs as a global terminal command.</p>
+        </div>
+
+        <div class="install-grid">
+          <!-- Step 1: Install -->
+          <div class="install-col">
+            <div class="install-col-head">
+              <div class="install-num">1</div>
+              <h3>Install the CLI</h3>
+            </div>
+            <p class="install-desc">Clone the repository and install the <code>prismai</code> command in editable mode:</p>
+            <div class="cmd-block">
+              <div class="cmd-header">
+                <span class="cmd-dots"><span></span><span></span><span></span></span>
+                <button type="button" class="copy-btn" data-copy="git clone https://github.com/Hackathon-Repo-Org/PRism-AI-PROD-.git&#10;cd PRism-AI-PROD-&#10;pip install -r requirements.txt&#10;pip install -e ." aria-label="Copy code">Copy</button>
+              </div>
+              <pre><code>git clone https://github.com/Hackathon-Repo-Org/PRism-AI-PROD-.git
+cd PRism-AI-PROD-
+pip install -r requirements.txt
+pip install -e .</code></pre>
+            </div>
+            <p class="install-hint">&check; Installs <code>prismai</code> into your PATH on Windows, macOS, and Linux.</p>
+          </div>
+
+          <!-- Step 2: Setup AI Key -->
+          <div class="install-col">
+            <div class="install-col-head">
+              <div class="install-num">2</div>
+              <h3>Connect Any AI Provider</h3>
+            </div>
+            <p class="install-desc">Works with DeepSeek, OpenAI, Gemini, Claude, or local Ollama:</p>
+            <div class="cmd-block">
+              <div class="cmd-header">
+                <span class="cmd-dots"><span></span><span></span><span></span></span>
+                <button type="button" class="copy-btn" data-copy="prismai setup" aria-label="Copy code">Copy</button>
+              </div>
+              <pre><code># Option A: Interactive setup wizard
+prismai setup
+
+# Option B: Set environment variable
+$env:DEEPSEEK_API_KEY = "sk-..."  # or OPENAI, GEMINI</code></pre>
+            </div>
+            <p class="install-hint">&check; Your key is saved locally in <code>.prism.env</code> and is never committed.</p>
+          </div>
+
+          <!-- Step 3: Run -->
+          <div class="install-col">
+            <div class="install-col-head">
+              <div class="install-num">3</div>
+              <h3>Verify &amp; Use</h3>
+            </div>
+            <p class="install-desc">Run doctor to ensure all systems are green, then point it at any folder:</p>
+            <div class="cmd-block">
+              <div class="cmd-header">
+                <span class="cmd-dots"><span></span><span></span><span></span></span>
+                <button type="button" class="copy-btn" data-copy="prismai doctor&#10;prismai check&#10;prismai chat" aria-label="Copy code">Copy</button>
+              </div>
+              <pre><code># Check setup & AI connectivity
+prismai doctor
+
+# Run review or chat with codebase
+prismai check
+prismai chat</code></pre>
+            </div>
+            <p class="install-hint">&check; Outputs instant findings and writes <code>PRISM-REPORT.md</code>.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CLI Showcase / Use It -->
+    <section class="use" id="use">
+      <div class="wrap use-layout">
+        <div class="use-left">
+          <h2>Command Reference</h2>
+          <p class="subhead">A unified interface tailored for both interactive coding and automated CI gates.</p>
+
+          <div class="cli-tabs" role="tablist">
+            <button type="button" role="tab" aria-selected="true" class="cli-tab active" data-tab="chat"><code>prismai chat</code></button>
+            <button type="button" role="tab" aria-selected="false" class="cli-tab" data-tab="check"><code>prismai check</code></button>
+            <button type="button" role="tab" aria-selected="false" class="cli-tab" data-tab="watch"><code>prismai watch</code></button>
+            <button type="button" role="tab" aria-selected="false" class="cli-tab" data-tab="doctor"><code>prismai doctor</code></button>
+          </div>
+
+          <div class="cli-display">
+            <!-- Chat Panel -->
+            <div class="cli-panel active" id="panel-chat">
+              <p class="cli-desc">Interactive pair programming with full context awareness of your repository.</p>
+              <pre class="term-box"><code><span class="t-prompt">PS C:\my-project&gt;</span> prismai
+
+PRism-AI - Hi! I'm your pre-review code checker.
+  Project  my-shop-app &middot; 117 files &middot; 726 KB
+  AI       DeepSeek &middot; deepseek-chat
+
+<span class="t-user">you &rsaquo;</span> <span class="t-strong">which parts of the code are the riskiest?</span>
+  &bull; <span class="t-bad">[HIGH] Security:</span> shopmart/reports/sales.py:7 (SQL injection)
+  &bull; <span class="t-bad">[HIGH] Security:</span> shopmart/users/auth.py:5 (hardcoded credentials)
+  &bull; <span class="t-warn">[HIGH] Null:</span> shopmart/orders/shipping.py:7 (crashes on empty address)
+
+<span class="t-user">you &rsaquo;</span> <span class="t-strong">/check</span>
+  &rarr; Running 3 specialists in parallel... Writes PRISM-REPORT.md</code></pre>
+            </div>
+
+            <!-- Check Panel -->
+            <div class="cli-panel" id="panel-check">
+              <p class="cli-desc">Deterministic pre-review gate. Checks commits, branches, or raw folders.</p>
+              <pre class="term-box"><code><span class="t-prompt">PS C:\my-project&gt;</span> prismai check --previous last
+
+PRism-AI  HEAD vs main  [DeepSeek: deepseek-chat]
+Run run-002: 3 changed file(s). Running specialists in parallel...
+
+  code-review    completed  12s
+  testing        completed  34s
+  documentation  completed  25s
+  tests: 22 passed, 0 failed, exit code 0
+
+Since run-001:
+  <span class="t-ok">&check; Resolved: 9</span>  &middot;  <span class="t-dim">&circlearrowright; Persistent: 0</span>  &middot;  <span class="t-dim">&plus; New: 0</span>
+
+<span class="t-ok t-strong">RESULT: READY FOR HUMAN REVIEW</span>
+Report written to: PRISM-REPORT.md</code></pre>
+            </div>
+
+            <!-- Watch Panel -->
+            <div class="cli-panel" id="panel-watch">
+              <p class="cli-desc">Continuous background daemon that updates your report every time you save.</p>
+              <pre class="term-box"><code><span class="t-prompt">PS C:\my-project&gt;</span> prismai watch .
+
+Watching C:\my-project
+Each check writes PRISM-REPORT.md there. Press Ctrl+C to stop.
+
+[12:15:02] change detected in service.py... checking...
+  &bull; code-review: 1 issue found (bulk_discount off-by-one)
+  &bull; testing: 1 missing test identified
+[12:15:35] change detected in service.py... checking...
+  &bull; all checks passed &rarr; READY FOR HUMAN REVIEW
+
+Waiting for changes...</code></pre>
+            </div>
+
+            <!-- Doctor Panel -->
+            <div class="cli-panel" id="panel-doctor">
+              <p class="cli-desc">Self-healing environment diagnostics with zero external dependencies.</p>
+              <pre class="term-box"><code><span class="t-prompt">PS C:\my-project&gt;</span> prismai doctor
+
+PRism-AI doctor
+  <span class="t-ok">[OK  ]</span> Python 3.12.10
+  <span class="t-ok">[OK  ]</span> package jsonschema
+  <span class="t-ok">[OK  ]</span> package pytest
+  <span class="t-ok">[OK  ]</span> git 2.44.0
+  <span class="t-ok">[OK  ]</span> AI provider - api.deepseek.com - deepseek-flash
+  <span class="t-ok">[OK  ]</span> AI connection - the model replied 'OK'
+  <span class="t-ok">[OK  ]</span> prismai command - C:\Python312\Scripts\prismai.exe
+
+All good - try:  prismai chat</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <div class="use-right">
+          <div class="artifacts-box">
+            <h3>What Each Run Leaves Behind</h3>
+            <p>Every PRism-AI run generates an immutable, inspectable run folder. No hidden state, no mystery verdicts.</p>
+            <dl class="file-tree">
+              <dt>runs/&lt;runId&gt;/</dt>
+              <dd>Isolated run directory with timestamp &amp; candidate commit hash</dd>
+              <dt>report.md</dt>
+              <dd>Actionable human-readable report with exact file, line, and remediation</dd>
+              <dt>report.json</dt>
+              <dd>Machine-readable JSON schema validated against schemas/report.schema.json</dd>
+              <dt>delta.md</dt>
+              <dd>Stateful comparison with previous run (Resolved vs. Persistent)</dd>
+              <dt>context.json</dt>
+              <dd>Shared immutable snapshot data, AST import graphs, and exclusions</dd>
+              <dt>logs/pytest.log</dt>
+              <dd>Raw execution logs and JUnit XML from the project's actual test run</dd>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Definition of Ready -->
+    <section class="proof" id="proof">
+      <div class="wrap proof-grid">
+        <div class="proof-copy">
+          <h2>What "READY FOR HUMAN REVIEW" Means</h2>
+          <p class="lede">Review readiness is a scoped, verifiable state — never blind approval to merge or deploy without human judgment.</p>
+          <ul class="checks-list">
+            <li>
+              <strong>All 3 Specialist Checks Completed:</strong> Code Review, Testing, and Documentation agents all executed within timeout.
+            </li>
+            <li>
+              <strong>Deterministic Tests Passed:</strong> The project's build and test commands exited with code 0.
+            </li>
+            <li>
+              <strong>Zero Policy Blockers:</strong> No unhandled exceptions, SQL injection, null dereferences, or contract drifts remain open.
+            </li>
+            <li>
+              <strong>Full Provenance Preserved:</strong> Every finding is anchored to an exact file path, line number, and verifiable evidence.
+            </li>
+          </ul>
+        </div>
+        <div class="proof-verdict-box">
+          <div class="verdict-card">
+            <span class="vc-badge">&check; READY FOR HUMAN REVIEW</span>
+            <h4>Deterministic Policy Gate Satisfied</h4>
+            <p>Run: <code>run-20260927-7bf8c12</code> &middot; Snapshot: <code>7bf8c12</code></p>
+            <div class="vc-row">
+              <span>Code Review</span>
+              <span class="t-ok">0 Blockers</span>
+            </div>
+            <div class="vc-row">
+              <span>Test Runner</span>
+              <span class="t-ok">22 Passed (Exit 0)</span>
+            </div>
+            <div class="vc-row">
+              <span>Documentation</span>
+              <span class="t-ok">OpenAPI In Sync</span>
+            </div>
+            <div class="vc-foot">
+              <span>Delta: 9 Resolved &middot; 0 Persistent</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="wrap footer-row">
+      <div class="footer-brand">
+        <span class="brand-title">PRism<strong>AI</strong></span>
+        <p>Built for the IBM Hackathon 2026.</p>
+      </div>
+      <div class="footer-links">
+        <a href="#top">Back to top &uarr;</a>
+        <a href="https://github.com/Hackathon-Repo-Org/PRism-AI-PROD-" target="_blank" rel="noopener">GitHub Repository</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
